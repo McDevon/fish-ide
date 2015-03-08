@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Jussi Enroos. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FishViewController.h"
 
-@implementation ViewController
+@implementation FishViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
