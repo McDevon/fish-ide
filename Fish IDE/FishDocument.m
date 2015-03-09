@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Jussi Enroos. All rights reserved.
 //
 
-#import "Document.h"
+#import "FishDocument.h"
 
-@interface Document ()
+@interface FishDocument ()
 
 @end
 
-@implementation Document
+@implementation FishDocument
 
 - (instancetype)init {
     self = [super init];

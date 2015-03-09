@@ -10,11 +10,14 @@
 		4CE254651AAC969A00E511B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254641AAC969A00E511B6 /* AppDelegate.m */; };
 		4CE254671AAC969A00E511B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254661AAC969A00E511B6 /* main.m */; };
 		4CE2546A1AAC969A00E511B6 /* FishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254691AAC969A00E511B6 /* FishViewController.m */; };
-		4CE2546D1AAC969A00E511B6 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2546C1AAC969A00E511B6 /* Document.m */; };
+		4CE2546D1AAC969A00E511B6 /* FishDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2546C1AAC969A00E511B6 /* FishDocument.m */; };
 		4CE2546F1AAC969A00E511B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2546E1AAC969A00E511B6 /* Images.xcassets */; };
 		4CE254721AAC969A00E511B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CE254701AAC969A00E511B6 /* Main.storyboard */; };
 		4CE2547E1AAC969A00E511B6 /* Fish_IDETests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2547D1AAC969A00E511B6 /* Fish_IDETests.m */; };
 		4CE254891AACC99900E511B6 /* FishWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254881AACC99900E511B6 /* FishWindowController.m */; };
+		4CE2548D1AAE274F00E511B6 /* FishProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2548C1AAE274F00E511B6 /* FishProjectDocument.m */; };
+		4CE254901AAE276D00E511B6 /* FishInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */; };
+		4CE254931AAE27BF00E511B6 /* FishProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254921AAE27BF00E511B6 /* FishProgram.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +38,8 @@
 		4CE254661AAC969A00E511B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4CE254681AAC969A00E511B6 /* FishViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FishViewController.h; sourceTree = "<group>"; };
 		4CE254691AAC969A00E511B6 /* FishViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FishViewController.m; sourceTree = "<group>"; };
-		4CE2546B1AAC969A00E511B6 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
-		4CE2546C1AAC969A00E511B6 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		4CE2546B1AAC969A00E511B6 /* FishDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FishDocument.h; sourceTree = "<group>"; };
+		4CE2546C1AAC969A00E511B6 /* FishDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FishDocument.m; sourceTree = "<group>"; };
 		4CE2546E1AAC969A00E511B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4CE254711AAC969A00E511B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4CE254771AAC969A00E511B6 /* Fish IDETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fish IDETests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +47,12 @@
 		4CE2547D1AAC969A00E511B6 /* Fish_IDETests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fish_IDETests.m; sourceTree = "<group>"; };
 		4CE254871AACC99900E511B6 /* FishWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishWindowController.h; sourceTree = "<group>"; };
 		4CE254881AACC99900E511B6 /* FishWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishWindowController.m; sourceTree = "<group>"; };
+		4CE2548B1AAE274F00E511B6 /* FishProjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishProjectDocument.h; sourceTree = "<group>"; };
+		4CE2548C1AAE274F00E511B6 /* FishProjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishProjectDocument.m; sourceTree = "<group>"; };
+		4CE2548E1AAE276D00E511B6 /* FishInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishInterpreter.h; sourceTree = "<group>"; };
+		4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishInterpreter.m; sourceTree = "<group>"; };
+		4CE254911AAE27BF00E511B6 /* FishProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishProgram.h; sourceTree = "<group>"; };
+		4CE254921AAE27BF00E511B6 /* FishProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishProgram.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +100,14 @@
 				4CE254691AAC969A00E511B6 /* FishViewController.m */,
 				4CE254871AACC99900E511B6 /* FishWindowController.h */,
 				4CE254881AACC99900E511B6 /* FishWindowController.m */,
-				4CE2546B1AAC969A00E511B6 /* Document.h */,
-				4CE2546C1AAC969A00E511B6 /* Document.m */,
+				4CE2546B1AAC969A00E511B6 /* FishDocument.h */,
+				4CE2546C1AAC969A00E511B6 /* FishDocument.m */,
+				4CE2548B1AAE274F00E511B6 /* FishProjectDocument.h */,
+				4CE2548C1AAE274F00E511B6 /* FishProjectDocument.m */,
+				4CE2548E1AAE276D00E511B6 /* FishInterpreter.h */,
+				4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */,
+				4CE254911AAE27BF00E511B6 /* FishProgram.h */,
+				4CE254921AAE27BF00E511B6 /* FishProgram.m */,
 				4CE2546E1AAC969A00E511B6 /* Images.xcassets */,
 				4CE254701AAC969A00E511B6 /* Main.storyboard */,
 				4CE254611AAC969A00E511B6 /* Supporting Files */,
@@ -225,8 +240,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CE2546D1AAC969A00E511B6 /* Document.m in Sources */,
+				4CE2546D1AAC969A00E511B6 /* FishDocument.m in Sources */,
+				4CE254901AAE276D00E511B6 /* FishInterpreter.m in Sources */,
+				4CE254931AAE27BF00E511B6 /* FishProgram.m in Sources */,
 				4CE254891AACC99900E511B6 /* FishWindowController.m in Sources */,
+				4CE2548D1AAE274F00E511B6 /* FishProjectDocument.m in Sources */,
 				4CE2546A1AAC969A00E511B6 /* FishViewController.m in Sources */,
 				4CE254671AAC969A00E511B6 /* main.m in Sources */,
 				4CE254651AAC969A00E511B6 /* AppDelegate.m in Sources */,
