@@ -19,4 +19,7 @@
 @property int executeAreaWidth;
 @property int executeAreaHeight;
 
+
++ (instancetype) createProgramFromFileContents:(NSString*) fishFileContents;
+
 @end
