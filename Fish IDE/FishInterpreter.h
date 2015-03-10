@@ -16,9 +16,17 @@ typedef enum {
     fie_notInitialized,
     fie_finished,
     fie_invalidInstruction,
+    fie_popEmptyStack,
+    fie_divisionByZero,
 } FishInterpreterError;
 
 @interface FishInterpreter : NSObject
+
+// Interpreter state
+@property FPoint ip; // Instruction pointer
+@property FPoint direction; // IP direction
+
+
 
 - (instancetype)initWithISManager:(FishInstructionSetManager*) isManager;
 
@@ -28,5 +36,10 @@ typedef enum {
 
 // Instruction commands
 - (void) setDirection:(FPoint) direction;
+- (void) push:(NSNumber*) number;
+- (void) push:(NSNumber*) number index:(NSUInteger) index;
+- (NSNumber*) pop;
+
+- (void) setError:(FishInterpreterError) error;
 
 @end

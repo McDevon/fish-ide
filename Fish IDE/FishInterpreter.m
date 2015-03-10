@@ -36,17 +36,17 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     
     // Line lengths
     NSMutableArray *_lineLengths;
-    
-    // Instruction pointer
-    FPoint _ip;
-    
-    // Moving direction
-    FPoint _direction;
-    
+        
     BOOL _skip;
     
     // List of enabled instruction sets
     NSArray *_enabledInstructionSets;
+    
+    // Stacks
+    NSMutableArray *_currentStack;
+    NSMutableArray *_stackStack;
+    
+    FishInterpreterError _error;
 }
 
 - (instancetype)initWithISManager:(FishInstructionSetManager*) isManager
@@ -54,11 +54,17 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     if (self = [super init]) {
         _codebox = [[NSMutableDictionary alloc] init];
         _lineLengths = [[NSMutableArray alloc] init];
+        _currentStack = [[NSMutableArray alloc] init];
+        _stackStack = [[NSMutableArray alloc] init];
+        
+        [_stackStack addObject:_currentStack];
         
         _ip = fpp(-1, 0);
         _direction = fpp(1, 0); // Initially move right
         
         _skip = NO;
+        
+        _error = fie_none;
         
         _enabledInstructionSets = [isManager defaultInstructionSets];
     }
@@ -111,8 +117,8 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
         }
     }
     
-    FISHLOG(@"IP at %d, %d", _ip.x, _ip.y);
-    
+    FISHLOG(@"IP at %d, %d Dir: %d, %d", _ip.x, _ip.y, _direction.x, _direction.y);
+
     if (_skip) {
         // Next instruction is skipped, don't interpret it
         _skip = NO;
@@ -137,7 +143,8 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
         // Instruction found, interpret it
         if (instructionHandler != nil) {
             FISHLOG(@"Interpreting instruction %@", instruction);
-            return instructionHandler(self);
+            instructionHandler(self);
+            return _error;
         }
     }
     
@@ -145,12 +152,55 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     return fie_invalidInstruction;
 }
 
-#pragma mark - Interpreter commands
+#pragma mark - Debug methods
 
-- (void)setDirection:(FPoint)direction
+- (NSString*) stackString
 {
-    _direction = direction;
+    // Current stack as string
+    NSMutableString *stack = [NSMutableString string];
+    
+    for (NSNumber *number in _currentStack) {
+        [stack appendFormat:@"%@ ", number];
+    }
+    
+    return stack;
 }
 
+#pragma mark - Interpreter commands
+
+- (NSNumber*) pop
+{
+    if (_currentStack.count == 0) {
+        // Nothing to pop!
+        _error = fie_popEmptyStack;
+        return nil;
+    }
+    
+    NSNumber *top = [_currentStack lastObject];
+    [_currentStack removeLastObject];
+    
+    FISHLOG(@"Pop. Stack: %@", [self stackString]);
+    
+    return top;
+}
+
+- (void) push:(NSNumber*) number
+{
+    [_currentStack addObject:number];
+    
+    FISHLOG(@"Push. Stack: %@", [self stackString]);
+}
+
+- (void) push:(NSNumber*) number index:(NSUInteger) index
+{
+    [_currentStack insertObject:number atIndex:index];
+    
+    FISHLOG(@"Push. Stack: %@", [self stackString]);
+}
+
+- (void)setError:(FishInterpreterError)error
+{
+    _error = error;
+}
 
 @end

@@ -17,10 +17,16 @@
 {
     FishInstructionSetManager * isManager = [[FishInstructionSetManager alloc] init];
 
+    /*NSString *fileContents =
+    @"<^;a\\/<^\n"
+    @"t>    vrivi\n"
+    @">^lm\\/ >\n";*/
+    
     NSString *fileContents =
-    @">^a rivi\n"
-    @"t<inen rivi\n"
-    @"k^lmas\n";
+    @"a4*3,       ;\n"
+    @"t>    vrivi\n"
+    @">^lm\\/ >\n";
+
     
     FishProgram *prog = [FishProgram programFromFileContents:fileContents];
     
