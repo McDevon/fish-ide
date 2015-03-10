@@ -10,6 +10,28 @@
 #import "FishInterpreter.h"
 #import "FishProgram.h"
 
+// Floating point number comparison ripped from
+// http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm
+
+BOOL almostEqual(float A, float B, int maxUlps)
+{
+    // Make sure maxUlps is non-negative and small enough that the
+    // default NAN won't compare as equal to anything.
+    assert(maxUlps > 0 && maxUlps < 4 * 1024 * 1024);
+    int aInt = *(int*)&A;
+    // Make aInt lexicographically ordered as a twos-complement int
+    if (aInt < 0)
+        aInt = 0x80000000 - aInt;
+    // Make bInt lexicographically ordered as a twos-complement int
+    int bInt = *(int*)&B;
+    if (bInt < 0)
+        bInt = 0x80000000 - bInt;
+    int intDiff = abs(aInt - bInt);
+    if (intDiff <= maxUlps)
+        return YES;
+    return NO;
+}
+
 @implementation FishInstructionSetManager
 {
     NSMutableDictionary *_instructionSets;
@@ -60,32 +82,52 @@
     // Arithmetic operators
     NSMutableDictionary *arithmetic = [NSMutableDictionary dictionary];
     arithmetic[@"+"] = ^(FishInterpreter* i){
-        double a = [[i pop] doubleValue], b = [[i pop] doubleValue];
-        [i push:[NSNumber numberWithDouble:b + a]];
+        float a = [[i pop] floatValue], b = [[i pop] floatValue];
+        [i push:[NSNumber numberWithFloat:b + a]];
     };
     arithmetic[@"-"] = ^(FishInterpreter* i){
-        double a = [[i pop] doubleValue], b = [[i pop] doubleValue];
-        [i push:[NSNumber numberWithDouble:b - a]];
+        float a = [[i pop] floatValue], b = [[i pop] floatValue];
+        [i push:[NSNumber numberWithFloat:b - a]];
     };
     arithmetic[@"*"] = ^(FishInterpreter* i){
-        double a = [[i pop] doubleValue], b = [[i pop] doubleValue];
-        [i push:[NSNumber numberWithDouble:b * a]];
+        float a = [[i pop] floatValue], b = [[i pop] floatValue];
+        [i push:[NSNumber numberWithFloat:b * a]];
     };
     arithmetic[@","] = ^(FishInterpreter* i){
-        double a = [[i pop] doubleValue], b = [[i pop] doubleValue];
+        float a = [[i pop] floatValue], b = [[i pop] floatValue];
         // NOTE: In this case this is a valid comparison
         if (a == 0.0) {
             [i setError:fie_divisionByZero];
             return;
         }
-        [i push:[NSNumber numberWithDouble:b / a]];
+        [i push:[NSNumber numberWithFloat:b / a]];
     };
     arithmetic[@"%"] = ^(FishInterpreter* i){
-        double a = [[i pop] doubleValue], b = [[i pop] doubleValue];
-        [i push:[NSNumber numberWithDouble:fmod(b, a)]];
+        float a = [[i pop] floatValue], b = [[i pop] floatValue];
+        [i push:[NSNumber numberWithFloat:fmod(b, a)]];
     };
     
     [_instructionSets setObject:arithmetic forKey:@"arithmetic"];
+    
+    // Comparison operators
+    NSMutableDictionary *comparison = [NSMutableDictionary dictionary];
+    comparison[@"="] = ^(FishInterpreter* i){
+        float a = [[i pop] floatValue], b = [[i pop] floatValue];
+        int result = almostEqual(a, b, 4) ? 1 : 0;
+        [i push:[NSNumber numberWithInt:result]];
+    };
+    comparison[@"("] = ^(FishInterpreter* i){
+        float a = [[i pop] floatValue], b = [[i pop] floatValue];
+        int result = b < a ? 1 : 0;
+        [i push:[NSNumber numberWithInt:result]];
+    };
+    comparison[@")"] = ^(FishInterpreter* i){
+        float a = [[i pop] floatValue], b = [[i pop] floatValue];
+        int result = b > a ? 1 : 0;
+        [i push:[NSNumber numberWithInt:result]];
+    };
+    
+    [_instructionSets setObject:comparison forKey:@"comparison"];
 }
 
 - (NSDictionary*)instructionSetForName:(NSString *)setName
@@ -98,7 +140,8 @@
     return @[_instructionSets[@"direction"],
              _instructionSets[@"mirror"],
              _instructionSets[@"hexNumber"],
-             _instructionSets[@"arithmetic"]];
+             _instructionSets[@"arithmetic"],
+             _instructionSets[@"comparison"]];
 }
 
 @end
