@@ -8,21 +8,28 @@
 
 #import "FishProgram.h"
 
+FPoint fpp(int x, int y)
+{
+    FPoint p; p.x = x; p.y = y; return p;
+}
+
+FSize fsz(int width, int height)
+{
+    FSize s; s.width = width; s.height = height; return s;
+}
+
 @implementation FishProgram
 
 - (instancetype)init
 {
     if (self = [super init]) {
-        _originX = 0;
-        _originY = 0;
-
         _lines = [[NSMutableArray alloc] init];
     }
     
     return self;
 }
 
-+ (instancetype)createProgramFromFileContents:(NSString *)fishFileContents
++ (instancetype)programFromFileContents:(NSString *)fishFileContents
 {
     FishProgram *prog = [[FishProgram alloc] init];
     
@@ -31,10 +38,15 @@
     UInt32 i = 0;
     size_t longest = 0;
     int line = 0;
+    BOOL done = NO;
     
-    while (str[i] != '\0') {
+    while (!done) {
         
-        if (str[i] == '\n') {
+        if (str[i] == '\0') {
+            done = YES;
+        }
+        
+        if (str[i] == '\n' || done) {
             // Create a line and add to array
             size_t textSize = i - line + 1;
             
@@ -46,7 +58,7 @@
             [prog.lines addObject:string];
             
             // Log the lines for now
-            NSLog(@"%@", string);
+            //NSLog(@"%@", string);
             
             free (text);
             
@@ -58,12 +70,23 @@
                 longest = textSize-1;
             }
         }
+        
+        i++;
     }
     
-    prog.executeAreaWidth = (int)longest;
-    prog.executeAreaHeight = (int)[prog.lines count];
     
-    return nil;
+    return prog;
+}
+
+- (NSString *)description
+{
+    NSMutableString *desc = [NSMutableString stringWithString:@"Rows:\n"];
+    
+    for (NSString *line in _lines) {
+        [desc appendString:line];
+    }
+    
+    return desc;
 }
 
 @end

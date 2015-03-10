@@ -8,18 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+typedef struct {
+    int x;
+    int y;
+} FPoint;
+
+typedef struct {
+    int width;
+    int height;
+} FSize;
+
+FPoint fpp(int x, int y);
+FSize fsz(int width, int height);
+
 @interface FishProgram : NSObject
 
 @property NSMutableArray *lines;       // NSStrings (ending in newline?)
 
-// Canvas settings
-@property int originX;
-@property int originY;
-
-@property int executeAreaWidth;
-@property int executeAreaHeight;
-
-
-+ (instancetype) createProgramFromFileContents:(NSString*) fishFileContents;
++ (instancetype) programFromFileContents:(NSString*) fishFileContents;
 
 @end

@@ -18,6 +18,7 @@
 		4CE2548D1AAE274F00E511B6 /* FishProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2548C1AAE274F00E511B6 /* FishProjectDocument.m */; };
 		4CE254901AAE276D00E511B6 /* FishInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */; };
 		4CE254931AAE27BF00E511B6 /* FishProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254921AAE27BF00E511B6 /* FishProgram.m */; };
+		4CE254971AAF0A0100E511B6 /* DebugTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254961AAF0A0100E511B6 /* DebugTestClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishInterpreter.m; sourceTree = "<group>"; };
 		4CE254911AAE27BF00E511B6 /* FishProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishProgram.h; sourceTree = "<group>"; };
 		4CE254921AAE27BF00E511B6 /* FishProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishProgram.m; sourceTree = "<group>"; };
+		4CE254951AAF0A0100E511B6 /* DebugTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugTestClass.h; sourceTree = "<group>"; };
+		4CE254961AAF0A0100E511B6 /* DebugTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugTestClass.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 			children = (
 				4CE254631AAC969A00E511B6 /* AppDelegate.h */,
 				4CE254641AAC969A00E511B6 /* AppDelegate.m */,
+				4CE254951AAF0A0100E511B6 /* DebugTestClass.h */,
+				4CE254961AAF0A0100E511B6 /* DebugTestClass.m */,
 				4CE254681AAC969A00E511B6 /* FishViewController.h */,
 				4CE254691AAC969A00E511B6 /* FishViewController.m */,
 				4CE254871AACC99900E511B6 /* FishWindowController.h */,
@@ -248,6 +253,7 @@
 				4CE2546A1AAC969A00E511B6 /* FishViewController.m in Sources */,
 				4CE254671AAC969A00E511B6 /* main.m in Sources */,
 				4CE254651AAC969A00E511B6 /* AppDelegate.m in Sources */,
+				4CE254971AAF0A0100E511B6 /* DebugTestClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
