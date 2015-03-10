@@ -9,23 +9,31 @@
 #import "DebugTestClass.h"
 #import "FishProgram.h"
 #import "FishInterpreter.h"
+#import "FishInstructionSetManager.h"
 
 @implementation DebugTestClass
 
 - (void)run
 {
+    FishInstructionSetManager * isManager = [[FishInstructionSetManager alloc] init];
+
     NSString *fileContents =
-    @"eka rivi\n"
-    @"toinen rivi\n"
-    @"kolmas\n";
+    @">^a rivi\n"
+    @"t<inen rivi\n"
+    @"k^lmas\n";
     
     FishProgram *prog = [FishProgram programFromFileContents:fileContents];
     
     NSLog(@"%@", prog);
     
-    FishInterpreter *interperter = [[FishInterpreter alloc] init];
+    FishInterpreter *interperter = [[FishInterpreter alloc] initWithISManager:isManager];
     
     [interperter initializeProgram:prog];
+    
+    FishInterpreterError error = fie_none;
+    while (error == fie_none) {
+        error = [interperter executeStep];
+    }
 }
 
 @end

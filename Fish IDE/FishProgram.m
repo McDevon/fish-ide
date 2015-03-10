@@ -43,6 +43,10 @@ FSize fsz(int width, int height)
     while (!done) {
         
         if (str[i] == '\0') {
+            if (i > 0 && str[i-1] == '\n') {
+                break;
+            }
+            
             done = YES;
         }
         
@@ -83,8 +87,10 @@ FSize fsz(int width, int height)
     NSMutableString *desc = [NSMutableString stringWithString:@"Rows:\n"];
     
     for (NSString *line in _lines) {
-        [desc appendString:line];
+        [desc appendString:[NSString stringWithFormat:@"%@\n", line]];
     }
+    
+    [desc appendString:[NSString stringWithFormat:@"Row count: %lu", [_lines count]]];
     
     return desc;
 }
