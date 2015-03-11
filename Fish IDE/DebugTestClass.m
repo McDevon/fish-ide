@@ -23,8 +23,8 @@
     @">^lm\\/ >\n";*/
     
     NSString *fileContents =
-    @"a4*3)54=    ;\n"
-    @"t>    vrivi\n"
+    @"'v    ;\n"
+    @"t>    ^rivi\n"
     @">^lm\\/ >\n";
 
     

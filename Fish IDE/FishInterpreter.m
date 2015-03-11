@@ -9,6 +9,7 @@
 #import "FishInterpreter.h"
 
 #import "FishInstructionSetManager.h"
+#import "FishContext.h"
 
 #ifdef DEBUG
 
@@ -30,10 +31,7 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 
 @implementation FishInterpreter
-{
-    // Program
-    NSMutableDictionary *_codebox;
-    
+{    
     // Line lengths
     NSMutableArray *_lineLengths;
         
@@ -42,9 +40,6 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     // List of enabled instruction sets
     NSArray *_enabledInstructionSets;
     
-    // Stacks
-    NSMutableArray *_currentStack;
-    NSMutableArray *_stackStack;
     
     FishInterpreterError _error;
 }
@@ -54,15 +49,16 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     if (self = [super init]) {
         _codebox = [[NSMutableDictionary alloc] init];
         _lineLengths = [[NSMutableArray alloc] init];
-        _currentStack = [[NSMutableArray alloc] init];
-        _stackStack = [[NSMutableArray alloc] init];
+        _currentContext = [[FishContext alloc] init];
+        _contextStack = [[NSMutableArray alloc] init];
         
-        [_stackStack addObject:_currentStack];
+        [_contextStack addObject:_currentContext];
         
         _ip = fpp(-1, 0);
         _direction = fpp(1, 0); // Initially move right
         
         _skip = NO;
+        _stringMode = nil;
         
         _error = fie_none;
         
@@ -131,6 +127,26 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     NSString *key = [NSString stringWithFormat:@"%d,%d", _ip.x, _ip.y];
     NSString *instruction = [_codebox objectForKey:key];
     
+    if (_stringMode != nil && !!![instruction isEqualToString:_stringMode]) {
+        // Push character number to stack
+        char c;
+        if (instruction == nil) {
+            c = ' ';
+        }
+        else {
+            c = [instruction characterAtIndex:0];
+        }
+        NSNumber *n = [NSNumber numberWithChar:c];
+        FISHLOG(@"Push char %c", c);
+        [self push:n];
+        return fie_none;
+    }
+    else if (instruction != nil && [instruction isEqualToString:_stringMode]) {
+        FISHLOG(@"End string mode");
+        _stringMode = nil;
+        return fie_none;
+    }
+    
     if (instruction == nil || [instruction isEqualToString:@" "]) {
         // No instruction here or whitespace, interpret as whitespace
         return fie_none;
@@ -159,7 +175,7 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     // Current stack as string
     NSMutableString *stack = [NSMutableString string];
     
-    for (NSNumber *number in _currentStack) {
+    for (NSNumber *number in _currentContext.stack) {
         [stack appendFormat:@"%@ ", number];
     }
     
@@ -170,14 +186,14 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 - (NSNumber*) pop
 {
-    if (_currentStack.count == 0) {
+    if (_currentContext.stack.count == 0) {
         // Nothing to pop!
         _error = fie_popEmptyStack;
         return nil;
     }
     
-    NSNumber *top = [_currentStack lastObject];
-    [_currentStack removeLastObject];
+    NSNumber *top = [_currentContext.stack lastObject];
+    [_currentContext.stack removeLastObject];
     
     FISHLOG(@"Pop. Stack: %@", [self stackString]);
     
@@ -186,14 +202,14 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 - (void) push:(NSNumber*) number
 {
-    [_currentStack addObject:number];
+    [_currentContext.stack addObject:number];
     
     FISHLOG(@"Push. Stack: %@", [self stackString]);
 }
 
 - (void) push:(NSNumber*) number index:(NSUInteger) index
 {
-    [_currentStack insertObject:number atIndex:index];
+    [_currentContext.stack insertObject:number atIndex:index];
     
     FISHLOG(@"Push. Stack: %@", [self stackString]);
 }

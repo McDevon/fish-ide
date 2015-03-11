@@ -113,21 +113,28 @@ BOOL almostEqual(float A, float B, int maxUlps)
     NSMutableDictionary *comparison = [NSMutableDictionary dictionary];
     comparison[@"="] = ^(FishInterpreter* i){
         float a = [[i pop] floatValue], b = [[i pop] floatValue];
-        int result = almostEqual(a, b, 4) ? 1 : 0;
-        [i push:[NSNumber numberWithInt:result]];
+        [i push:[NSNumber numberWithInt:almostEqual(a, b, 4) ? 1 : 0]];
     };
     comparison[@"("] = ^(FishInterpreter* i){
         float a = [[i pop] floatValue], b = [[i pop] floatValue];
-        int result = b < a ? 1 : 0;
-        [i push:[NSNumber numberWithInt:result]];
+        [i push:[NSNumber numberWithInt:b < a ? 1 : 0]];
     };
     comparison[@")"] = ^(FishInterpreter* i){
         float a = [[i pop] floatValue], b = [[i pop] floatValue];
-        int result = b > a ? 1 : 0;
-        [i push:[NSNumber numberWithInt:result]];
+        [i push:[NSNumber numberWithInt:b > a ? 1 : 0]];
     };
     
     [_instructionSets setObject:comparison forKey:@"comparison"];
+    
+    // String mode
+    NSMutableDictionary *stringMode = [NSMutableDictionary dictionary];
+    stringMode[@"\""] = ^(FishInterpreter* i){i.stringMode = @"\"";};
+    stringMode[@"'"]  = ^(FishInterpreter* i){i.stringMode = @"'";};
+    
+    [_instructionSets setObject:stringMode forKey:@"stringMode"];
+    
+    // Movement manipulation
+    //NSMutableDictionary *movement = [NSMutableDictionary dictionary];
 }
 
 - (NSDictionary*)instructionSetForName:(NSString *)setName
@@ -141,7 +148,8 @@ BOOL almostEqual(float A, float B, int maxUlps)
              _instructionSets[@"mirror"],
              _instructionSets[@"hexNumber"],
              _instructionSets[@"arithmetic"],
-             _instructionSets[@"comparison"]];
+             _instructionSets[@"comparison"],
+             _instructionSets[@"stringMode"]];
 }
 
 @end

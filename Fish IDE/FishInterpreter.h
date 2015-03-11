@@ -10,6 +10,7 @@
 #import "FishProgram.h"
 
 @class FishInstructionSetManager;
+@class FishContext;
 
 typedef enum {
     fie_none,
@@ -18,6 +19,7 @@ typedef enum {
     fie_invalidInstruction,
     fie_popEmptyStack,
     fie_divisionByZero,
+    fie_negativeIPPosition,
 } FishInterpreterError;
 
 @interface FishInterpreter : NSObject
@@ -26,7 +28,14 @@ typedef enum {
 @property FPoint ip; // Instruction pointer
 @property FPoint direction; // IP direction
 
+@property NSString *stringMode;
 
+// Stacks
+@property FishContext *currentContext;
+@property NSMutableArray *contextStack;
+
+// Program
+@property NSMutableDictionary *codebox;
 
 - (instancetype)initWithISManager:(FishInstructionSetManager*) isManager;
 
