@@ -45,6 +45,7 @@ typedef enum {
 
 // Instruction commands
 - (void) setDirection:(FPoint) direction;
+- (void) skip;
 - (void) push:(NSNumber*) number;
 - (void) push:(NSNumber*) number index:(NSUInteger) index;
 - (NSNumber*) pop;

@@ -214,6 +214,11 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     FISHLOG(@"Push. Stack: %@", [self stackString]);
 }
 
+- (void)skip
+{
+    _skip = YES;
+}
+
 - (void)setError:(FishInterpreterError)error
 {
     _error = error;

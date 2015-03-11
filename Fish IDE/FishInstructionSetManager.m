@@ -134,7 +134,48 @@ BOOL almostEqual(float A, float B, int maxUlps)
     [_instructionSets setObject:stringMode forKey:@"stringMode"];
     
     // Movement manipulation
-    //NSMutableDictionary *movement = [NSMutableDictionary dictionary];
+    NSMutableDictionary *movement = [NSMutableDictionary dictionary];
+    // Random direction
+    movement[@"x"] = ^(FishInterpreter* i){
+        int r = arc4random_uniform(4);
+        switch (r) {
+            case 0:
+                i.direction = fpp(0,-1);
+                break;
+            case 1:
+                i.direction = fpp(0,1);
+                break;
+            case 2:
+                i.direction = fpp(-1,0);
+                break;
+            case 3:
+                i.direction = fpp(1,0);
+                break;
+                
+            default:
+                break;
+        }
+    };
+    // Portal
+    movement[@"."] = ^(FishInterpreter* i){
+        int y = [i.pop intValue], x = [i.pop intValue];
+        if (x < 0 || y < 0) {
+            [i setError:fie_negativeIPPosition];
+            return;
+        }
+        i.ip = fpp(x, y);
+    };
+    // Jump
+    movement[@"!"] = ^(FishInterpreter* i){[i skip];};
+    // Conditional jump
+    movement[@"?"] = ^(FishInterpreter* i){
+        float a = [[i pop] floatValue];
+        if (!almostEqual(a, 0.f, 3)) {
+            [i skip];
+        }
+    };
+    
+    [_instructionSets setObject:movement forKey:@"movement"];
 }
 
 - (NSDictionary*)instructionSetForName:(NSString *)setName
@@ -149,7 +190,8 @@ BOOL almostEqual(float A, float B, int maxUlps)
              _instructionSets[@"hexNumber"],
              _instructionSets[@"arithmetic"],
              _instructionSets[@"comparison"],
-             _instructionSets[@"stringMode"]];
+             _instructionSets[@"stringMode"],
+             _instructionSets[@"movement"]];
 }
 
 @end

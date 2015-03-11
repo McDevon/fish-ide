@@ -23,9 +23,9 @@
     @">^lm\\/ >\n";*/
     
     NSString *fileContents =
-    @"'v    ;\n"
-    @"t>    ^rivi\n"
-    @">^lm\\/ >\n";
+    @" 00v  ;\n"
+    @"t;3x2; ^rivi\n"
+    @">^l!\\/ >\n";
 
     
     FishProgram *prog = [FishProgram programFromFileContents:fileContents];
@@ -40,6 +40,7 @@
     while (error == fie_none) {
         error = [interperter executeStep];
     }
+    NSLog(@"done %d", error);
 }
 
 @end
