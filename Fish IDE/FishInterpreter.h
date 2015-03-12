@@ -61,6 +61,7 @@ typedef enum {
 - (FishContext *) popContext;
 
 - (void) output:(NSString*) string;
+- (void) input;
 
 - (void) setError:(FishInterpreterError) error;
 

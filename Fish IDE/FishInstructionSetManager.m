@@ -267,6 +267,43 @@ BOOL almostEqual(float A, float B, int maxUlps)
     };
     
     [_instructionSets setObject:sub forKey:@"sub"];
+    
+    // I/O
+    NSMutableDictionary *io = [NSMutableDictionary dictionary];
+    
+    sub[@"o"] = ^(FishInterpreter* i){
+        // Print the top value as a character
+        NSNumber *n = [i pop];
+        if (n == nil) {return;}
+        [i output:[NSString stringWithFormat:@"%c", [n charValue]]];
+    };
+
+    sub[@"n"] = ^(FishInterpreter* i){
+        // Print the top value as a number
+        NSNumber *n = [i pop];
+        if (n == nil) {return;}
+        float v = [n floatValue];
+        float r = fmodf(v, 1.f);
+        if (almostEqual(r, 0.f, 3)) {
+            [i output:[NSString stringWithFormat:@"%.0f", v]];
+        } else {
+            [i output:[NSString stringWithFormat:@"%f", v]];
+        }
+    };
+    
+    sub[@"i"] = ^(FishInterpreter* i){
+        // Input a single char from stdin or equivalent
+        [i input];
+    };
+
+    [_instructionSets setObject:io forKey:@"io"];
+    
+    // Program flow
+    NSMutableDictionary *flow = [NSMutableDictionary dictionary];
+    sub[@"i"] = ^(FishInterpreter* i){[i setError:fie_finished];};
+    
+    [_instructionSets setObject:flow forKey:@"flow"];
+
 }
 
 - (NSDictionary*)instructionSetForName:(NSString *)setName
@@ -284,7 +321,9 @@ BOOL almostEqual(float A, float B, int maxUlps)
              _instructionSets[@"stringMode"],
              _instructionSets[@"movement"],
              _instructionSets[@"stack"],
-             _instructionSets[@"sub"]];
+             _instructionSets[@"sub"],
+             _instructionSets[@"io"],
+             _instructionSets[@"flow"]];
 }
 
 @end

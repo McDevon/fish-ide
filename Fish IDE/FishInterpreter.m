@@ -18,7 +18,7 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 // Debug logging for interpreter
 #define ENABLE_FISHLOG
-//#undef ENABLE_FISHLOG
+#undef ENABLE_FISHLOG
 
 #endif
 
@@ -262,7 +262,7 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 {
     [_contextStack addObject:context];
     _currentContext = context;
-    FISHLOG(@"Push context, stack size %lu", [_contextStack count]);
+    FISHLOG(@"Push context, context stack size %lu", [_contextStack count]);
 }
 
 - (FishContext *) popContext
@@ -271,10 +271,10 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
         FishContext *c = [_contextStack lastObject];
         [_contextStack removeLastObject];
         if ([_contextStack count] > 0) {
-            FISHLOG(@"Pop context, stack size: %lu", [_contextStack count]);
+            FISHLOG(@"Pop context, context stack size: %lu", [_contextStack count]);
             _currentContext = [_contextStack lastObject];
         } else {
-            FISHLOG(@"Pop context, stack clear");
+            FISHLOG(@"Pop context, context stack clear");
             _currentContext = nil;
         }
         return c;
@@ -288,6 +288,13 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     // Just print for now
     // TODO: proper output to console
     printf("%s", [string cStringUsingEncoding:NSASCIIStringEncoding]);
+}
+
+- (void) input
+{
+    // Just add something for now
+    // TODO: proper input
+    [self push:[NSNumber numberWithChar:'M']];
 }
 
 - (void) skip
