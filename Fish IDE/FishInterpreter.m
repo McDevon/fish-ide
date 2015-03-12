@@ -200,6 +200,22 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     return top;
 }
 
+- (NSNumber *) popIndex:(NSUInteger)index
+{
+    if (_currentContext.stack.count <= index) {
+        // Nothing to pop!
+        _error = fie_popFromEmptySlot;
+        return nil;
+    }
+    
+    NSNumber *top = [_currentContext.stack objectAtIndex:index];
+    [_currentContext.stack removeObjectAtIndex:index];
+    
+    FISHLOG(@"Pop from %lu. Stack: %@", index, [self stackString]);
+    
+    return top;
+}
+
 - (void) push:(NSNumber*) number
 {
     [_currentContext.stack addObject:number];
@@ -214,12 +230,72 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     FISHLOG(@"Push. Stack: %@", [self stackString]);
 }
 
-- (void)skip
+- (void) reverseStack
+{
+    NSEnumerator *e = [_currentContext.stack reverseObjectEnumerator];
+    
+    // As allObjects is not defined to return the objects in order (although it does), the return is done manually
+    NSMutableArray *array = [NSMutableArray array];
+    NSNumber *n;
+    while ((n = [e nextObject]) != nil) {
+        [array addObject:n];
+    }
+    _currentContext.stack = array;
+}
+
+- (NSUInteger)stackSize
+{
+    return [_currentContext.stack count];
+}
+
+- (NSNumber *)getRegister
+{
+    return _currentContext.contextRegister;
+}
+
+- (void)setRegister:(NSNumber*) value
+{
+    _currentContext.contextRegister = value;
+}
+
+- (void) pushContext:(FishContext*) context
+{
+    [_contextStack addObject:context];
+    _currentContext = context;
+    FISHLOG(@"Push context, stack size %lu", [_contextStack count]);
+}
+
+- (FishContext *) popContext
+{
+    if ([_contextStack count] > 0) {
+        FishContext *c = [_contextStack lastObject];
+        [_contextStack removeLastObject];
+        if ([_contextStack count] > 0) {
+            FISHLOG(@"Pop context, stack size: %lu", [_contextStack count]);
+            _currentContext = [_contextStack lastObject];
+        } else {
+            FISHLOG(@"Pop context, stack clear");
+            _currentContext = nil;
+        }
+        return c;
+    }
+    FISHLOG(@"Pop context, nothing to pop");
+    return nil;
+}
+
+- (void) output:(NSString *)string
+{
+    // Just print for now
+    // TODO: proper output to console
+    printf("%s", [string cStringUsingEncoding:NSASCIIStringEncoding]);
+}
+
+- (void) skip
 {
     _skip = YES;
 }
 
-- (void)setError:(FishInterpreterError)error
+- (void) setError:(FishInterpreterError)error
 {
     _error = error;
 }

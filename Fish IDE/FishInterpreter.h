@@ -18,8 +18,10 @@ typedef enum {
     fie_finished,
     fie_invalidInstruction,
     fie_popEmptyStack,
+    fie_popFromEmptySlot,
     fie_divisionByZero,
     fie_negativeIPPosition,
+    fie_notEnoughValuesInStack,
 } FishInterpreterError;
 
 @interface FishInterpreter : NSObject
@@ -49,6 +51,16 @@ typedef enum {
 - (void) push:(NSNumber*) number;
 - (void) push:(NSNumber*) number index:(NSUInteger) index;
 - (NSNumber*) pop;
+- (NSNumber*) popIndex:(NSUInteger) index;
+- (void) reverseStack;
+- (NSUInteger) stackSize;
+- (NSNumber*) getRegister;
+- (void) setRegister:(NSNumber*) value;
+
+- (void) pushContext:(FishContext*) context;
+- (FishContext *) popContext;
+
+- (void) output:(NSString*) string;
 
 - (void) setError:(FishInterpreterError) error;
 

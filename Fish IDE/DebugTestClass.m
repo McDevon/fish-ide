@@ -23,6 +23,7 @@
     @">^lm\\/ >\n";*/
     
     NSString *fileContents =
+    @"'0123456789'5[0];\n"
     @" 00v  ;\n"
     @"t;3x2; ^rivi\n"
     @">^l!\\/ >\n";

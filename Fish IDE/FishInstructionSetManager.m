@@ -9,6 +9,7 @@
 #import "FishInstructionSetManager.h"
 #import "FishInterpreter.h"
 #import "FishProgram.h"
+#import "FishContext.h"
 
 // Floating point number comparison ripped from
 // http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm
@@ -176,6 +177,96 @@ BOOL almostEqual(float A, float B, int maxUlps)
     };
     
     [_instructionSets setObject:movement forKey:@"movement"];
+    
+    // Stack manipulation
+    NSMutableDictionary *stack = [NSMutableDictionary dictionary];
+    // Duplicate
+    stack[@":"] = ^(FishInterpreter* i){
+        NSNumber *n = [i pop];
+        [i push:n];
+        [i push:[n copy]];
+    };
+    // Remove top value
+    stack[@"~"] = ^(FishInterpreter* i){[i pop];};
+    // Swap top two values
+    stack[@"$"] = ^(FishInterpreter* i){
+        NSNumber *a = [i pop], *b = [i pop];
+        [i push:a];
+        [i push:b];
+    };
+    // Swap top three values
+    stack[@"@"] = ^(FishInterpreter* i){
+        NSNumber *a = [i pop], *b = [i pop], *c = [i pop];
+        [i push:a];
+        [i push:c];
+        [i push:b];
+    };
+    // Shift stack left
+    stack[@"{"] = ^(FishInterpreter* i){[i push:[i popIndex:0]];};
+    // Shift stack right
+    stack[@"}"] = ^(FishInterpreter* i){[i push:[i pop] index:0];};
+    // Reverse stack
+    stack[@"r"] = ^(FishInterpreter* i){[i reverseStack];};
+    // Push stack length
+    stack[@"l"] = ^(FishInterpreter* i){[i push:[NSNumber numberWithUnsignedInteger:[i stackSize]]];};
+    // Register call
+    stack[@"&"] = ^(FishInterpreter* i){
+        NSNumber *r = [i getRegister];
+        if (r == nil) {
+            r = [i pop];
+            [i setRegister:r];
+        } else {
+            [i push:r];
+            [i setRegister:nil];
+        }
+    };
+    
+    [_instructionSets setObject:stack forKey:@"stack"];
+
+    // Subprograms with separate context
+    NSMutableDictionary *sub = [NSMutableDictionary dictionary];
+    
+    sub[@"["] = ^(FishInterpreter* i){
+        // Pop value and move that many values to new stack
+        int count = [[i pop] intValue];
+        
+        NSUInteger c = [i stackSize];
+        if (count < 0) {
+            count = (int)c + count;
+        }
+        
+        if (count > (int)c) {
+            [i setError:fie_notEnoughValuesInStack];
+            return;
+        }
+        c -= count;
+        
+        // Create new context
+        FishContext *context = [[FishContext alloc] init];
+        
+        // Copy values from old stack to new
+        for (NSUInteger k = 0; k < count; k++) {
+            [context.stack addObject:[i popIndex:c]];
+        }
+        
+        // Take new context in use (old register is not touched)
+        [i pushContext:context];
+    };
+    sub[@"]"] = ^(FishInterpreter *i){
+        FishContext *old = [i popContext];
+        if ([i.contextStack count] == 0) {
+            // Create new empty context
+            [i pushContext:[[FishContext alloc] init]];
+        } else {
+            // Add old stack on top of new
+            NSUInteger count = [old.stack count];
+            for (NSUInteger k = 0; k < count; k++) {
+                [i push:[old.stack objectAtIndex:k]];
+            }
+        }
+    };
+    
+    [_instructionSets setObject:sub forKey:@"sub"];
 }
 
 - (NSDictionary*)instructionSetForName:(NSString *)setName
@@ -191,7 +282,9 @@ BOOL almostEqual(float A, float B, int maxUlps)
              _instructionSets[@"arithmetic"],
              _instructionSets[@"comparison"],
              _instructionSets[@"stringMode"],
-             _instructionSets[@"movement"]];
+             _instructionSets[@"movement"],
+             _instructionSets[@"stack"],
+             _instructionSets[@"sub"]];
 }
 
 @end
