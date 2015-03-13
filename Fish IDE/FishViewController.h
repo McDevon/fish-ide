@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "FishScrollView.h"
 
 @interface FishViewController : NSViewController
 
+@property IBOutlet NSTextView *textView;
+@property IBOutlet FishScrollView *contentView;
 
 @end
 

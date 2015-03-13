@@ -260,7 +260,7 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 {
     NSEnumerator *e = [_currentContext.stack reverseObjectEnumerator];
     
-    // As allObjects is not defined to return the objects in order (although it does), the return is done manually
+    // As allObjects is not defined to return the objects in order (although it does), the reversing is done with a loop
     NSMutableArray *array = [NSMutableArray array];
     NSNumber *n;
     while ((n = [e nextObject]) != nil) {

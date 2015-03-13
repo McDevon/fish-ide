@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CBD4B331AB37AEF00748322 /* FishDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD4B321AB37AEF00748322 /* FishDocumentView.m */; };
 		4CE254651AAC969A00E511B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254641AAC969A00E511B6 /* AppDelegate.m */; };
 		4CE254671AAC969A00E511B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254661AAC969A00E511B6 /* main.m */; };
 		4CE2546A1AAC969A00E511B6 /* FishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254691AAC969A00E511B6 /* FishViewController.m */; };
@@ -21,6 +22,8 @@
 		4CE254971AAF0A0100E511B6 /* DebugTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254961AAF0A0100E511B6 /* DebugTestClass.m */; };
 		4CE2549A1AAF54C600E511B6 /* FishInstructionSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254991AAF54C600E511B6 /* FishInstructionSetManager.m */; };
 		4CE254A01AAF89B700E511B6 /* FishContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2549F1AAF89B700E511B6 /* FishContext.m */; };
+		4CE254A31AB2EE2B00E511B6 /* FishScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254A21AB2EE2B00E511B6 /* FishScrollView.m */; };
+		4CE254A61AB2EF7100E511B6 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254A51AB2EF7100E511B6 /* TestView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4CBD4B311AB37AEF00748322 /* FishDocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishDocumentView.h; sourceTree = "<group>"; };
+		4CBD4B321AB37AEF00748322 /* FishDocumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishDocumentView.m; sourceTree = "<group>"; };
 		4CE2545E1AAC969A00E511B6 /* Fish IDE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fish IDE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE254621AAC969A00E511B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE254631AAC969A00E511B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,6 +67,10 @@
 		4CE254991AAF54C600E511B6 /* FishInstructionSetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishInstructionSetManager.m; sourceTree = "<group>"; };
 		4CE2549E1AAF89B700E511B6 /* FishContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishContext.h; sourceTree = "<group>"; };
 		4CE2549F1AAF89B700E511B6 /* FishContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishContext.m; sourceTree = "<group>"; };
+		4CE254A11AB2EE2B00E511B6 /* FishScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishScrollView.h; sourceTree = "<group>"; };
+		4CE254A21AB2EE2B00E511B6 /* FishScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishScrollView.m; sourceTree = "<group>"; };
+		4CE254A41AB2EF7100E511B6 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		4CE254A51AB2EF7100E511B6 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +132,12 @@
 				4CE254991AAF54C600E511B6 /* FishInstructionSetManager.m */,
 				4CE254911AAE27BF00E511B6 /* FishProgram.h */,
 				4CE254921AAE27BF00E511B6 /* FishProgram.m */,
+				4CE254A11AB2EE2B00E511B6 /* FishScrollView.h */,
+				4CE254A21AB2EE2B00E511B6 /* FishScrollView.m */,
+				4CE254A41AB2EF7100E511B6 /* TestView.h */,
+				4CE254A51AB2EF7100E511B6 /* TestView.m */,
+				4CBD4B311AB37AEF00748322 /* FishDocumentView.h */,
+				4CBD4B321AB37AEF00748322 /* FishDocumentView.m */,
 				4CE2546E1AAC969A00E511B6 /* Images.xcassets */,
 				4CE254701AAC969A00E511B6 /* Main.storyboard */,
 				4CE254611AAC969A00E511B6 /* Supporting Files */,
@@ -258,14 +273,17 @@
 				4CE2546D1AAC969A00E511B6 /* FishDocument.m in Sources */,
 				4CE254901AAE276D00E511B6 /* FishInterpreter.m in Sources */,
 				4CE254931AAE27BF00E511B6 /* FishProgram.m in Sources */,
+				4CBD4B331AB37AEF00748322 /* FishDocumentView.m in Sources */,
 				4CE254891AACC99900E511B6 /* FishWindowController.m in Sources */,
 				4CE2548D1AAE274F00E511B6 /* FishProjectDocument.m in Sources */,
 				4CE2546A1AAC969A00E511B6 /* FishViewController.m in Sources */,
 				4CE254671AAC969A00E511B6 /* main.m in Sources */,
+				4CE254A61AB2EF7100E511B6 /* TestView.m in Sources */,
 				4CE2549A1AAF54C600E511B6 /* FishInstructionSetManager.m in Sources */,
 				4CE254651AAC969A00E511B6 /* AppDelegate.m in Sources */,
 				4CE254971AAF0A0100E511B6 /* DebugTestClass.m in Sources */,
 				4CE254A01AAF89B700E511B6 /* FishContext.m in Sources */,
+				4CE254A31AB2EE2B00E511B6 /* FishScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

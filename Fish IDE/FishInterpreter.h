@@ -24,6 +24,13 @@ typedef enum {
     fie_notEnoughValuesInStack,
 } FishInterpreterError;
 
+@protocol FishInterpreterDelegate <NSObject>
+
+@required
+- (void) ipMovedTo:(FPoint) point;
+
+@end
+
 @interface FishInterpreter : NSObject
 
 // Interpreter state
@@ -32,12 +39,15 @@ typedef enum {
 
 @property NSString *stringMode;
 
+
 // Stacks
 @property FishContext *currentContext;
 @property NSMutableArray *contextStack;
 
 // Program
 @property NSMutableDictionary *codebox;
+
+@property (weak) id<FishInterpreterDelegate> delegate;
 
 + (NSString*) errorString:(FishInterpreterError) error;
 
