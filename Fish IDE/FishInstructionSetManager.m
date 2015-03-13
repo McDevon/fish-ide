@@ -300,7 +300,7 @@ BOOL almostEqual(float A, float B, int maxUlps)
     
     // Program flow
     NSMutableDictionary *flow = [NSMutableDictionary dictionary];
-    sub[@"i"] = ^(FishInterpreter* i){[i setError:fie_finished];};
+    flow[@";"] = ^(FishInterpreter* i){[i setError:fie_finished];};
     
     [_instructionSets setObject:flow forKey:@"flow"];
 
