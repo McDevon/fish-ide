@@ -44,6 +44,32 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     FishInterpreterError _error;
 }
 
++ (NSString*) errorString:(FishInterpreterError) error
+{
+    switch (error) {
+        case fie_none:
+            return @"No error";
+        case fie_notInitialized:
+            return @"Interpreter not initialized";
+        case fie_finished:
+            return @"Program finished";
+        case fie_invalidInstruction:
+            return @"Invalid instruction";
+        case fie_popEmptyStack:
+            return @"Tried to pop empty stack";
+        case fie_popFromEmptySlot:
+            return @"Tried to pop from empty stack location";
+        case fie_divisionByZero:
+            return @"Division by zero";
+        case fie_negativeIPPosition:
+            return @"Negative IP position";
+        case fie_notEnoughValuesInStack:
+            return @"Not enough values in stack";
+    }
+    
+    return @"Unrecognized error";
+}
+
 - (instancetype)initWithISManager:(FishInstructionSetManager*) isManager
 {
     if (self = [super init]) {

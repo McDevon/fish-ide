@@ -44,7 +44,7 @@
     while (error == fie_none) {
         error = [interperter executeStep];
     }
-    NSLog(@"done %d", error);
+    NSLog(@"done %d: %@", error, [FishInterpreter errorString:error]);
 }
 
 @end

@@ -39,6 +39,8 @@ typedef enum {
 // Program
 @property NSMutableDictionary *codebox;
 
++ (NSString*) errorString:(FishInterpreterError) error;
+
 - (instancetype)initWithISManager:(FishInstructionSetManager*) isManager;
 
 - (BOOL) initializeProgram:(FishProgram*) program;
