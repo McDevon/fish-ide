@@ -10,4 +10,6 @@
 
 @interface FishWindowController : NSWindowController <NSWindowDelegate>
 
+//@property IBOutlet NSWindow *window;
+
 @end

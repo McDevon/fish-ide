@@ -136,6 +136,7 @@
     /*
      *  Draw actual text
      */
+    
     NSSize attrSize = [currentText size];
     NSLog(@"Text size: %.2f, %.2f", attrSize.width, attrSize.height);
     NSLog(@"Font size: %.2f, %.2f", _fontSize.width, _fontSize.height);
