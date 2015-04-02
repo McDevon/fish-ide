@@ -122,6 +122,8 @@
         [gridPath lineToPoint:NSMakePoint(floorf(_textOrigin.x) - 0.5f, floorf(dirtyRect.origin.y + dirtyRect.size.height) - 0.5f)];
     }
     
+    NSLog(@"Rect size: %.2f, %.2f origin: %.2f, %.2f", dirtyRect.size.width, dirtyRect.size.height, dirtyRect.origin.x, dirtyRect.origin.y);
+    
     [_axisColor set];
     [gridPath setLineWidth:0.0];
     [gridPath stroke];
@@ -138,8 +140,6 @@
      */
     
     NSSize attrSize = [currentText size];
-    NSLog(@"Text size: %.2f, %.2f", attrSize.width, attrSize.height);
-    NSLog(@"Font size: %.2f, %.2f", _fontSize.width, _fontSize.height);
     
     [currentText drawAtPoint:NSMakePoint(_textOrigin.x, _textOrigin.y - attrSize.height)];
 }
