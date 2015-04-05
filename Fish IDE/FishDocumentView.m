@@ -144,6 +144,16 @@
     [currentText drawAtPoint:NSMakePoint(_textOrigin.x, _textOrigin.y - attrSize.height)];
 }
 
+- (void)playSelected
+{
+    NSLog(@"PLAY!");
+}
+
+- (void)stopSelected
+{
+    NSLog(@"STOP!");
+}
+
 #pragma mark - Fish Interpreter Delegate
 
 - (void)ipMovedTo:(FPoint)point

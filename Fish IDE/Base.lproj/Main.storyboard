@@ -660,33 +660,55 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="oZX-Ks-ot3"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="obJ-QE-uaE"/>
-                                <toolbarItem implicitItemIdentifier="EFC9B0D6-83CB-47DB-8B0E-ED106F5D5E7E" label="Play Button" paletteLabel="Custom View" id="qCt-7l-WXF">
+                                <toolbarItem implicitItemIdentifier="AB514027-D7BF-41A8-9A8C-CFE113702F69" label="Play" paletteLabel="Play" image="IconPlay" id="ksK-dZ-tNF">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="79" height="32"/>
-                                    <size key="maxSize" width="82" height="43"/>
-                                    <button key="view" verticalHuggingPriority="750" id="drK-KF-mjc">
-                                        <rect key="frame" x="0.0" y="14" width="79" height="43"/>
+                                    <size key="minSize" width="37" height="25"/>
+                                    <size key="maxSize" width="37" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="bF8-kp-DPr">
+                                        <rect key="frame" x="0.0" y="14" width="37" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RWq-eL-4Nf">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="IconPlay" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="12K-We-YID">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="playButtonSelected:" target="jGA-0Y-lOj" id="46D-cb-L8Q"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="E198086E-300A-483A-B507-19DD8DE00EA4" label="Stop" paletteLabel="Stop" image="IconStop" id="kxf-ld-0yM">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="37" height="25"/>
+                                    <size key="maxSize" width="37" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="F85-0F-GDx">
+                                        <rect key="frame" x="0.0" y="14" width="37" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="IconStop" imagePosition="only" alignment="center" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cRr-YY-yLK">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="stopButtonSelected:" target="jGA-0Y-lOj" id="yBd-gg-fIY"/>
+                                        </connections>
                                     </button>
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="qCt-7l-WXF"/>
+                                <toolbarItem reference="ksK-dZ-tNF"/>
+                                <toolbarItem reference="kxf-ld-0yM"/>
                                 <toolbarItem reference="obJ-QE-uaE"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>
                     <connections>
+                        <outlet property="playButton" destination="bF8-kp-DPr" id="N9s-Md-w8x"/>
+                        <outlet property="stopButton" destination="F85-0F-GDx" id="wCP-ui-KqD"/>
                         <segue destination="5gI-5U-AMq" kind="relationship" relationship="window.shadowedContentViewController" id="nsd-lR-9xd"/>
                     </connections>
                 </windowController>
                 <customObject id="6f7-a7-6o1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="334"/>
+            <point key="canvasLocation" x="74" y="384"/>
         </scene>
         <!--Fish View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -702,4 +724,8 @@
             <point key="canvasLocation" x="74" y="967"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="IconPlay" width="18" height="18"/>
+        <image name="IconStop" width="18" height="18"/>
+    </resources>
 </document>

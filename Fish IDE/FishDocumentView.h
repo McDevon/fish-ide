@@ -11,4 +11,7 @@
 
 @interface FishDocumentView : NSView <FishInterpreterDelegate>
 
+- (void) playSelected;
+- (void) stopSelected;
+
 @end

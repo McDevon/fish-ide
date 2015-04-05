@@ -10,6 +10,10 @@
 
 @interface FishWindowController : NSWindowController <NSWindowDelegate>
 
-//@property IBOutlet NSWindow *window;
+@property IBOutlet NSButton *playButton;
+@property IBOutlet NSButton *stopButton;
+
+- (IBAction) playButtonSelected:(id) sender;
+- (IBAction) stopButtonSelected:(id) sender;
 
 @end

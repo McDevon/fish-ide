@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0A275A1AD0564D00A61BFE /* IconPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A27561AD0564D00A61BFE /* IconPlay.png */; };
+		4C0A275B1AD0564D00A61BFE /* IconPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A27571AD0564D00A61BFE /* IconPlay@2x.png */; };
+		4C0A275C1AD0564D00A61BFE /* IconStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A27581AD0564D00A61BFE /* IconStop.png */; };
+		4C0A275D1AD0564D00A61BFE /* IconStop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A27591AD0564D00A61BFE /* IconStop@2x.png */; };
 		4CBD4B331AB37AEF00748322 /* FishDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD4B321AB37AEF00748322 /* FishDocumentView.m */; };
 		4CE254651AAC969A00E511B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254641AAC969A00E511B6 /* AppDelegate.m */; };
 		4CE254671AAC969A00E511B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254661AAC969A00E511B6 /* main.m */; };
@@ -37,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C0A27561AD0564D00A61BFE /* IconPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconPlay.png; path = Icons/IconPlay.png; sourceTree = "<group>"; };
+		4C0A27571AD0564D00A61BFE /* IconPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconPlay@2x.png"; path = "Icons/IconPlay@2x.png"; sourceTree = "<group>"; };
+		4C0A27581AD0564D00A61BFE /* IconStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconStop.png; path = Icons/IconStop.png; sourceTree = "<group>"; };
+		4C0A27591AD0564D00A61BFE /* IconStop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconStop@2x.png"; path = "Icons/IconStop@2x.png"; sourceTree = "<group>"; };
 		4CBD4B311AB37AEF00748322 /* FishDocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishDocumentView.h; sourceTree = "<group>"; };
 		4CBD4B321AB37AEF00748322 /* FishDocumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishDocumentView.m; sourceTree = "<group>"; };
 		4CE2545E1AAC969A00E511B6 /* Fish IDE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fish IDE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +99,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0A27531AD051DB00A61BFE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C0A27561AD0564D00A61BFE /* IconPlay.png */,
+				4C0A27571AD0564D00A61BFE /* IconPlay@2x.png */,
+				4C0A27581AD0564D00A61BFE /* IconStop.png */,
+				4C0A27591AD0564D00A61BFE /* IconStop@2x.png */,
+				4CE2546E1AAC969A00E511B6 /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		4CE254551AAC969900E511B6 = {
 			isa = PBXGroup;
 			children = (
@@ -138,9 +158,9 @@
 				4CE254A51AB2EF7100E511B6 /* TestView.m */,
 				4CBD4B311AB37AEF00748322 /* FishDocumentView.h */,
 				4CBD4B321AB37AEF00748322 /* FishDocumentView.m */,
-				4CE2546E1AAC969A00E511B6 /* Images.xcassets */,
 				4CE254701AAC969A00E511B6 /* Main.storyboard */,
 				4CE254611AAC969A00E511B6 /* Supporting Files */,
+				4C0A27531AD051DB00A61BFE /* Resources */,
 			);
 			path = "Fish IDE";
 			sourceTree = "<group>";
@@ -251,8 +271,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0A275C1AD0564D00A61BFE /* IconStop.png in Resources */,
 				4CE2546F1AAC969A00E511B6 /* Images.xcassets in Resources */,
+				4C0A275A1AD0564D00A61BFE /* IconPlay.png in Resources */,
+				4C0A275B1AD0564D00A61BFE /* IconPlay@2x.png in Resources */,
 				4CE254721AAC969A00E511B6 /* Main.storyboard in Resources */,
+				4C0A275D1AD0564D00A61BFE /* IconStop@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

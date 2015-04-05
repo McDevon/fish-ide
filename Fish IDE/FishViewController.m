@@ -7,6 +7,7 @@
 //
 
 #import "FishViewController.h"
+#import "FishDocumentView.h"
 
 @implementation FishViewController
 
@@ -20,6 +21,18 @@
     [super setRepresentedObject:representedObject];
 
     // Update the view, if already loaded.
+}
+
+- (void)playSelected
+{
+    FishDocumentView *dv = (FishDocumentView*)self.view;
+    [dv playSelected];
+}
+
+- (void)stopSelected
+{
+    FishDocumentView *dv = (FishDocumentView*)self.view;
+    [dv stopSelected];
 }
 
 @end

@@ -11,8 +11,11 @@
 
 @interface FishViewController : NSViewController
 
-@property IBOutlet NSTextView *textView;
-@property IBOutlet FishScrollView *contentView;
+//@property IBOutlet NSTextView *textView;
+//@property IBOutlet FishScrollView *contentView;
+
+- (void) playSelected;
+- (void) stopSelected;
 
 @end
 

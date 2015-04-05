@@ -7,6 +7,7 @@
 //
 
 #import "FishWindowController.h"
+#import "FishViewController.h"
 
 @interface FishWindowController ()
 
@@ -20,6 +21,20 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
     self.window.titleVisibility = NSWindowTitleHidden;
+}
+
+- (IBAction)playButtonSelected:(id)sender
+{
+    FishViewController *vc = (FishViewController*)self.contentViewController;
+    
+    [vc playSelected];
+}
+
+- (IBAction)stopButtonSelected:(id)sender
+{
+    FishViewController *vc = (FishViewController*)self.contentViewController;
+    
+    [vc stopSelected];
 }
 
 @end
