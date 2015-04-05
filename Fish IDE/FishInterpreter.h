@@ -28,6 +28,8 @@ typedef enum {
 
 @required
 - (void) ipMovedTo:(FPoint) point;
+- (void) output:(NSString*) output;
+- (void) requestInput;
 
 @end
 
@@ -56,6 +58,9 @@ typedef enum {
 - (BOOL) initializeProgram:(FishProgram*) program;
 
 - (FishInterpreterError) executeStep;
+
+// Delegate commands
+- (void) provideInput:(NSNumber*) input;
 
 // Instruction commands
 - (void) setDirection:(FPoint) direction;

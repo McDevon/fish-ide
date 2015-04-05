@@ -35,4 +35,10 @@
     [dv stopSelected];
 }
 
+- (void) registerStopButton:(NSButton*) button
+{
+    FishDocumentView *dv = (FishDocumentView*)self.view;
+    dv.stopButton = button;
+}
+
 @end

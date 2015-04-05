@@ -17,5 +17,7 @@
 - (void) playSelected;
 - (void) stopSelected;
 
+- (void) registerStopButton:(NSButton*) button;
+
 @end
 

@@ -723,6 +723,18 @@
             </objects>
             <point key="canvasLocation" x="74" y="967"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="TRq-0J-kkt">
+            <objects>
+                <viewController id="8WH-zb-tBm" sceneMemberID="viewController">
+                    <view key="view" id="1CP-ep-b4u">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="i0f-rZ-4h7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="IconPlay" width="18" height="18"/>

@@ -31,7 +31,7 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 
 @implementation FishInterpreter
-{    
+{
     // Line lengths
     NSMutableArray *_lineLengths;
         
@@ -39,7 +39,6 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     
     // List of enabled instruction sets
     NSArray *_enabledInstructionSets;
-    
     
     FishInterpreterError _error;
 }
@@ -111,6 +110,15 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
         ++j;
     }
     
+    // Initial values
+    _ip = fpp(-1, 0);
+    _direction = fpp(1, 0); // Initially move right
+    
+    _skip = NO;
+    _stringMode = nil;
+    
+    _error = fie_none;
+    
     return YES;
 }
 
@@ -119,6 +127,9 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     // Move ip
     _ip.x += _direction.x;
     _ip.y += _direction.y;
+    
+    // Notify delegate
+    [_delegate ipMovedTo:_ip];
     
     int lines = (int)[_lineLengths count];
     
