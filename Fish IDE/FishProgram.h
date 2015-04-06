@@ -26,5 +26,6 @@ FSize fsz(int width, int height);
 @property NSMutableArray *lines;       // NSStrings (ending in newline?)
 
 + (instancetype) programFromFileContents:(NSString*) fishFileContents;
++ (instancetype) programFromLines:(NSArray*) lines;
 
 @end

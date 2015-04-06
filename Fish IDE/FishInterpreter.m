@@ -95,6 +95,13 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 - (BOOL)initializeProgram:(FishProgram *)program
 {
+    [_lineLengths removeAllObjects];
+    [_codebox removeAllObjects];
+    [_contextStack removeAllObjects];
+    
+    _currentContext = [[FishContext alloc] init];
+    [_contextStack addObject:_currentContext];
+    
     // Go through lines and add chars to codebox
     int j = 0;
     for (NSString *line in [program lines]) {
@@ -128,9 +135,6 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     _ip.x += _direction.x;
     _ip.y += _direction.y;
     
-    // Notify delegate
-    [_delegate ipMovedTo:_ip];
-    
     int lines = (int)[_lineLengths count];
     
     // Check boundaries and wrap around if beyond edge
@@ -149,6 +153,9 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
             _ip.x = 0;
         }
     }
+    
+    // Notify delegate
+    [_delegate ipMovedTo:_ip];
     
     FISHLOG(@"IP at %d, %d Dir: %d, %d", _ip.x, _ip.y, _direction.x, _direction.y);
 

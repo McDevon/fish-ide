@@ -12,6 +12,7 @@
 @interface FishDocumentView : NSView <FishInterpreterDelegate>
 
 @property NSButton *stopButton;
+@property NSTextField *statusField;
 
 - (void) playSelected;
 - (void) stopSelected;

@@ -652,6 +652,7 @@
                 <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="FishWindowController" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="266" y="274" width="700" height="500"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -692,16 +693,35 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="AD2EC963-C370-4170-B3D1-ACE828851391" label="Status View" paletteLabel="Status View" id="Es6-JF-EZ4">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="96" height="15"/>
+                                    <size key="maxSize" width="400" height="22"/>
+                                    <textField key="view" verticalHuggingPriority="750" id="Vdk-AG-SZn">
+                                        <rect key="frame" x="0.0" y="14" width="400" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="ckr-i7-bze">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="ksK-dZ-tNF"/>
                                 <toolbarItem reference="kxf-ld-0yM"/>
                                 <toolbarItem reference="obJ-QE-uaE"/>
+                                <toolbarItem reference="Es6-JF-EZ4"/>
+                                <toolbarItem reference="obJ-QE-uaE"/>
+                                <toolbarItem reference="oZX-Ks-ot3"/>
+                                <toolbarItem reference="oZX-Ks-ot3"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>
                     <connections>
                         <outlet property="playButton" destination="bF8-kp-DPr" id="N9s-Md-w8x"/>
+                        <outlet property="statusField" destination="Vdk-AG-SZn" id="oAh-FN-98h"/>
                         <outlet property="stopButton" destination="F85-0F-GDx" id="wCP-ui-KqD"/>
                         <segue destination="5gI-5U-AMq" kind="relationship" relationship="window.shadowedContentViewController" id="nsd-lR-9xd"/>
                     </connections>

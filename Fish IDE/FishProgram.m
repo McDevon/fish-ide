@@ -83,6 +83,17 @@ FSize fsz(int width, int height)
     return prog;
 }
 
++ (instancetype)programFromLines:(NSArray *)lines
+{
+    FishProgram *prog = [[FishProgram alloc] init];
+
+    for (NSString *string in lines) {
+        [prog.lines addObject:[string copy]];
+    }
+    
+    return prog;
+}
+
 - (NSString *)description
 {
     NSMutableString *desc = [NSMutableString stringWithString:@"Rows:\n"];

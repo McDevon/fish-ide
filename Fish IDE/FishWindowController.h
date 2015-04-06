@@ -13,6 +13,8 @@
 @property IBOutlet NSButton *playButton;
 @property IBOutlet NSButton *stopButton;
 
+@property IBOutlet NSTextField *statusField;
+
 - (IBAction) playButtonSelected:(id) sender;
 - (IBAction) stopButtonSelected:(id) sender;
 

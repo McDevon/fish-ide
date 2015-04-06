@@ -16,6 +16,7 @@ typedef enum {
     is_none,
     is_running,
     is_requiresInput,
+    is_breakpoint,
     is_finished,
     is_error,
 } InterpreterState;
@@ -37,11 +38,13 @@ typedef enum {
      */
     
     NSString *_textBR;
-    NSString *_textBL;
-    NSString *_textTR;
-    NSString *_textTL;
+    NSMutableString *_textBL;
+    NSMutableString *_textTR;
+    NSMutableString *_textTL;
     
     NSMutableString *_outputString;
+    
+    NSMutableArray *_textArray;
     
     /*
      *  Color settings
@@ -66,6 +69,17 @@ typedef enum {
     
     NSTimer *_interpreterTimer;
     NSTimeInterval _interpreterTimeInterval; // double
+    
+    /*
+     *  Input
+     */
+    
+    NSMutableSet *_acceptableCharacterInputs;
+}
+
+- (BOOL)acceptsFirstResponder
+{
+    return YES;
 }
 
 - (void)awakeFromNib
@@ -86,11 +100,15 @@ typedef enum {
     _cursorColor    = [NSColor colorWithDeviceRed:0.1f green:0.0f blue:0.9f alpha:1.f];
     _fontColor      = [NSColor blackColor];
     
+    _textArray      = [[NSMutableArray alloc] init];
+    
     // Default text
     _textBR =
     @"'!dlroW olleH'>l0)?vov \n"
     @"              ^      < \n"
     @"                   ;   \n";
+    
+    [self resetWithText:_textBR];
     
     _ip = fpp(0, 0);
     
@@ -105,6 +123,27 @@ typedef enum {
     
     _interpreterTimer = nil;
     _interpreterTimeInterval = 0.05;
+    
+    
+    // Status bar
+    [self setStatusString:@"Ready"];
+    
+}
+
+- (void) setStatusString:(NSString*) string
+{
+    _statusField.stringValue = string;
+    _statusField.needsDisplay = YES;
+}
+
+- (void) resetWithText:(NSString*) text
+{
+    [_textArray removeAllObjects];
+    
+    NSArray *componentArray = [text componentsSeparatedByString:@"\n"];
+    for (NSString *string in componentArray) {
+        [_textArray addObject:[string mutableCopy]];
+    }
 }
 
 - (void) setFontName:(NSString*) fontName
@@ -145,7 +184,7 @@ typedef enum {
     NSDictionary *attributes = @{NSFontAttributeName: _codeFont,
                                  NSForegroundColorAttributeName: _fontColor};
     
-    NSAttributedString * currentText=[[NSAttributedString alloc] initWithString:_textBR attributes: attributes];
+    //NSAttributedString * currentText=[[NSAttributedString alloc] initWithString:_textBR attributes: attributes];
     
     /*
      *  Draw origin (and possibly a grid?)
@@ -180,7 +219,7 @@ typedef enum {
         [_cursorColor set];
         NSRectFill(NSMakeRect(_textOrigin.x + _cursor.x * _fontSize.width, _textOrigin.y - (_cursor.y + 1) * _fontSize.height, _fontSize.width, _fontSize.height));
     }
-    else if (_iState == is_requiresInput || _iState == is_running || _iState == is_finished) {
+    else if (_iState == is_requiresInput || _iState == is_running || _iState == is_finished || _iState == is_breakpoint) {
         [_ipColor set];
         NSRectFill(NSMakeRect(_textOrigin.x + _ip.x * _fontSize.width, _textOrigin.y - (_ip.y + 1) * _fontSize.height, _fontSize.width, _fontSize.height));
     }
@@ -193,9 +232,16 @@ typedef enum {
      *  Draw actual text
      */
     
-    NSSize attrSize = [currentText size];
     
-    [currentText drawAtPoint:NSMakePoint(_textOrigin.x, _textOrigin.y - attrSize.height)];
+    int line = 1;
+    for (NSMutableString *string in _textArray) {
+        [string drawAtPoint:NSMakePoint(_textOrigin.x, _textOrigin.y /*- attrSize.height*/ - line * _fontSize.height) withAttributes:attributes];
+        line++;
+    }
+    
+    
+    //NSSize attrSize = [currentText size];
+    //[currentText drawAtPoint:NSMakePoint(_textOrigin.x, _textOrigin.y - attrSize.height)];
 }
 
 - (void)playSelected
@@ -206,10 +252,13 @@ typedef enum {
         return;
     }
     
+    [self setStatusString:@"Running"];
+    
     _iState = is_running;
     
     // Create program
-    _program = [FishProgram programFromFileContents:_textBR];
+    //_program = [FishProgram programFromFileContents:_textBR];
+    _program = [FishProgram programFromLines:_textArray];
     [_interpreter initializeProgram:_program];
     
     // Start playing
@@ -234,6 +283,8 @@ typedef enum {
     _stopButton.enabled = NO;
     
     _iState = is_none;
+    
+    [self setStatusString:@"Stopped"];
 }
 
 - (void) interpreterUpdate:(NSTimer*) sender
@@ -246,9 +297,11 @@ typedef enum {
         
         if (error != fie_finished) {
             NSLog(@"Interpreter error: %@", [FishInterpreter errorString:error]);
+            [self setStatusString:[NSString stringWithFormat:@"Error: %@", [FishInterpreter errorString:error]]];
             _iState = is_error;
         }
         else {
+            [self setStatusString:@"Finished"];
             _iState = is_finished;
         }
 
@@ -258,6 +311,224 @@ typedef enum {
         });
     }
 }
+
+#pragma mark - Keyboard control
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    NSLog(@"Mouse clicked");
+    
+    if (_iState == is_error || _iState == is_finished) {
+        // Enable editor mode
+        _iState = is_none;
+        [self setNeedsDisplay:YES];
+    }
+}
+
+- (void)doCommandBySelector:(SEL)aSelector
+{
+    NSLog(@"Command %@", NSStringFromSelector(aSelector));
+    
+    if ([self respondsToSelector:aSelector]) {
+        [self performSelector:aSelector withObject:self];
+    }
+}
+
+- (void)keyDown:(NSEvent *)theEvent
+{
+    [self interpretKeyEvents:@[theEvent]];
+}
+
+- (void)keyUp:(NSEvent *)theEvent
+{
+    
+}
+
+- (void)flagsChanged:(NSEvent *)theEvent
+{
+    
+}
+
+#pragma mark - Keyboard events
+
+- (void)insertText:(NSString*)insertString
+{
+    if (!!! [self editorMode]) {
+        return;
+    }
+    
+    //NSLog(@"Key down");
+    NSLog(@"Key: %@ %d", insertString, [insertString characterAtIndex:0]);
+    
+    // Acceptable inserts
+    
+    // Get the correct line
+    NSMutableString *line = [_textArray objectAtIndex:_cursor.y];
+    [line insertString:insertString atIndex:_cursor.x];
+    
+    _cursor.x++;
+    
+    // Redraw
+    [self setNeedsDisplay:YES];
+}
+
+- (void)insertNewline:(id)sender
+{
+    if (!!! [self editorMode]) {
+        return;
+    }
+    
+    // Get the correct line
+    NSMutableString *line = [_textArray objectAtIndex:_cursor.y];
+    NSMutableString *newLine = [NSMutableString stringWithString:[line substringFromIndex:_cursor.x]];
+    [line deleteCharactersInRange: NSMakeRange(_cursor.x, line.length - _cursor.x)];
+
+    [_textArray insertObject:newLine atIndex:_cursor.y+1];
+    
+    _cursor.x = 0;
+    _cursor.y ++;
+    
+    // Redraw
+    [self setNeedsDisplay:YES];
+}
+
+- (void)moveUp:(id)sender
+{
+    if (!!! [self editorMode]) {
+        return;
+    }
+    
+    if (_cursor.y > 0) {
+        _cursor.y --;
+    }
+    
+    // Redraw
+    [self setNeedsDisplay:YES];
+}
+
+- (void)moveDown:(id)sender
+{
+    if (!!! [self editorMode]) {
+        return;
+    }
+    
+    _cursor.y ++;
+    
+    // Redraw
+    [self setNeedsDisplay:YES];
+}
+
+- (void)moveLeft:(id)sender
+{
+    if (!!! [self editorMode]) {
+        return;
+    }
+    
+    if (_cursor.x > 0) {
+        _cursor.x --;
+    }
+    
+    // Redraw
+    [self setNeedsDisplay:YES];
+}
+
+- (void)moveRight:(id)sender
+{
+    if (!!! [self editorMode]) {
+        return;
+    }
+    
+    _cursor.x ++;
+    
+    // Redraw
+    [self setNeedsDisplay:YES];
+}
+
+- (void)deleteBackward:(id)sender
+{
+    if (!!! [self editorMode]) {
+        return;
+    }
+    
+    if (_cursor.x == 0) {
+        if (_cursor.y == 0) {
+            return;
+        }
+        // Move the entire line after the previous one
+        
+        NSMutableString *line = [_textArray objectAtIndex:_cursor.y];
+        NSMutableString *previousLine = [_textArray objectAtIndex:_cursor.y-1];
+        
+        _cursor.x = (int)previousLine.length;
+        
+        [previousLine appendString:line];
+        
+        [_textArray removeObjectAtIndex:_cursor.y];
+        _cursor.y --;
+        
+        // Redraw
+        [self setNeedsDisplay:YES];
+        return;
+    }
+    
+    // Get the correct line
+    NSMutableString *line = [_textArray objectAtIndex:_cursor.y];
+    [line deleteCharactersInRange: NSMakeRange(_cursor.x-1, 1)];
+    
+    _cursor.x --;
+    
+    // Redraw
+    [self setNeedsDisplay:YES];
+}
+
+- (void)deleteForward:(id)sender
+{
+    if (!!! [self editorMode]) {
+        return;
+    }
+    
+    // Get the correct line
+    NSMutableString *line = [_textArray objectAtIndex:_cursor.y];
+    
+    if (_cursor.x >= line.length) {
+        if (_cursor.y >= _textArray.count - 1) {
+            return;
+        }
+        
+        // Join the next line
+        NSMutableString *line = [_textArray objectAtIndex:_cursor.y];
+        NSMutableString *nextLine = [_textArray objectAtIndex:_cursor.y+1];
+        
+        [line appendString:nextLine];
+        
+        [_textArray removeObjectAtIndex:_cursor.y+1];
+        
+        // Redraw
+        [self setNeedsDisplay:YES];
+        return;
+    }
+    
+    [line deleteCharactersInRange: NSMakeRange(_cursor.x, 1)];
+    
+    // Redraw
+    [self setNeedsDisplay:YES];
+}
+
+- (BOOL) editorMode
+{
+    if (_iState == is_error || _iState == is_finished) {
+        // Enable editor mode
+        _iState = is_none;
+    }
+    
+    if (_iState != is_none) {
+        NSLog(@"Not in editor mode");
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 #pragma mark - Fish Interpreter Delegate
 
