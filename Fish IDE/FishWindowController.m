@@ -7,7 +7,7 @@
 //
 
 #import "FishWindowController.h"
-#import "FishViewController.h"
+#import "FishEditorViewController.h"
 #import "FishDocumentView.h"
 
 @interface FishWindowController ()
@@ -23,23 +23,23 @@
     
     self.window.titleVisibility = NSWindowTitleHidden;
 
-    FishViewController *vc = (FishViewController*)self.contentViewController;
+    /*FishViewController *vc = (FishViewController*)self.contentViewController;
     FishDocumentView *dv = (FishDocumentView*)vc.view;
     
     dv.stopButton = _stopButton;
-    dv.statusField = _statusField;
+    dv.statusField = _statusField;*/
 }
 
 - (IBAction)playButtonSelected:(id)sender
 {
-    FishViewController *vc = (FishViewController*)self.contentViewController;
+    FishEditorViewController *vc = (FishEditorViewController*)self.contentViewController;
     
     [vc playSelected];
 }
 
 - (IBAction)stopButtonSelected:(id)sender
 {
-    FishViewController *vc = (FishViewController*)self.contentViewController;
+    FishEditorViewController *vc = (FishEditorViewController*)self.contentViewController;
     
     [vc stopSelected];
 }

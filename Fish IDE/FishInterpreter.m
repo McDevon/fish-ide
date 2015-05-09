@@ -332,13 +332,22 @@ NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
     // Just print for now
     // TODO: proper output to console
     printf("%s", [string cStringUsingEncoding:NSASCIIStringEncoding]);
+    
+    [_delegate output:string];
 }
 
 - (void) input
 {
     // Just add something for now
     // TODO: proper input
-    [self push:[NSNumber numberWithChar:'M']];
+    //[self push:[NSNumber numberWithChar:'M']];
+    
+    [_delegate requestInput];
+}
+
+- (void) provideInput:(NSNumber *)input
+{
+    [self push:input];
 }
 
 - (void) skip

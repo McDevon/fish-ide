@@ -325,14 +325,14 @@ typedef enum {
     }
 }
 
-- (void)doCommandBySelector:(SEL)aSelector
+/*- (void)doCommandBySelector:(SEL)aSelector
 {
     NSLog(@"Command %@", NSStringFromSelector(aSelector));
     
     if ([self respondsToSelector:aSelector]) {
         [self performSelector:aSelector withObject:self];
     }
-}
+}*/
 
 - (void)keyDown:(NSEvent *)theEvent
 {

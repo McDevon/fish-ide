@@ -11,10 +11,12 @@
 		4C0A275B1AD0564D00A61BFE /* IconPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A27571AD0564D00A61BFE /* IconPlay@2x.png */; };
 		4C0A275C1AD0564D00A61BFE /* IconStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A27581AD0564D00A61BFE /* IconStop.png */; };
 		4C0A275D1AD0564D00A61BFE /* IconStop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A27591AD0564D00A61BFE /* IconStop@2x.png */; };
+		4C0A27641AD30E8D00A61BFE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A27631AD30E8D00A61BFE /* MainViewController.m */; };
+		4C0A27671AD30F0800A61BFE /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A27661AD30F0800A61BFE /* CenterViewController.m */; };
 		4CBD4B331AB37AEF00748322 /* FishDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBD4B321AB37AEF00748322 /* FishDocumentView.m */; };
 		4CE254651AAC969A00E511B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254641AAC969A00E511B6 /* AppDelegate.m */; };
 		4CE254671AAC969A00E511B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254661AAC969A00E511B6 /* main.m */; };
-		4CE2546A1AAC969A00E511B6 /* FishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254691AAC969A00E511B6 /* FishViewController.m */; };
+		4CE2546A1AAC969A00E511B6 /* FishEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254691AAC969A00E511B6 /* FishEditorViewController.m */; };
 		4CE2546D1AAC969A00E511B6 /* FishDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2546C1AAC969A00E511B6 /* FishDocument.m */; };
 		4CE2546F1AAC969A00E511B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2546E1AAC969A00E511B6 /* Images.xcassets */; };
 		4CE254721AAC969A00E511B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CE254701AAC969A00E511B6 /* Main.storyboard */; };
@@ -23,11 +25,8 @@
 		4CE2548D1AAE274F00E511B6 /* FishProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2548C1AAE274F00E511B6 /* FishProjectDocument.m */; };
 		4CE254901AAE276D00E511B6 /* FishInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */; };
 		4CE254931AAE27BF00E511B6 /* FishProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254921AAE27BF00E511B6 /* FishProgram.m */; };
-		4CE254971AAF0A0100E511B6 /* DebugTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254961AAF0A0100E511B6 /* DebugTestClass.m */; };
 		4CE2549A1AAF54C600E511B6 /* FishInstructionSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254991AAF54C600E511B6 /* FishInstructionSetManager.m */; };
 		4CE254A01AAF89B700E511B6 /* FishContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2549F1AAF89B700E511B6 /* FishContext.m */; };
-		4CE254A31AB2EE2B00E511B6 /* FishScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254A21AB2EE2B00E511B6 /* FishScrollView.m */; };
-		4CE254A61AB2EF7100E511B6 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE254A51AB2EF7100E511B6 /* TestView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +44,10 @@
 		4C0A27571AD0564D00A61BFE /* IconPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconPlay@2x.png"; path = "Icons/IconPlay@2x.png"; sourceTree = "<group>"; };
 		4C0A27581AD0564D00A61BFE /* IconStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconStop.png; path = Icons/IconStop.png; sourceTree = "<group>"; };
 		4C0A27591AD0564D00A61BFE /* IconStop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconStop@2x.png"; path = "Icons/IconStop@2x.png"; sourceTree = "<group>"; };
+		4C0A27621AD30E8D00A61BFE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		4C0A27631AD30E8D00A61BFE /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		4C0A27651AD30F0800A61BFE /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
+		4C0A27661AD30F0800A61BFE /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterViewController.m; sourceTree = "<group>"; };
 		4CBD4B311AB37AEF00748322 /* FishDocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishDocumentView.h; sourceTree = "<group>"; };
 		4CBD4B321AB37AEF00748322 /* FishDocumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishDocumentView.m; sourceTree = "<group>"; };
 		4CE2545E1AAC969A00E511B6 /* Fish IDE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fish IDE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,8 +55,8 @@
 		4CE254631AAC969A00E511B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4CE254641AAC969A00E511B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4CE254661AAC969A00E511B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4CE254681AAC969A00E511B6 /* FishViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FishViewController.h; sourceTree = "<group>"; };
-		4CE254691AAC969A00E511B6 /* FishViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FishViewController.m; sourceTree = "<group>"; };
+		4CE254681AAC969A00E511B6 /* FishEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FishEditorViewController.h; sourceTree = "<group>"; };
+		4CE254691AAC969A00E511B6 /* FishEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FishEditorViewController.m; sourceTree = "<group>"; };
 		4CE2546B1AAC969A00E511B6 /* FishDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FishDocument.h; sourceTree = "<group>"; };
 		4CE2546C1AAC969A00E511B6 /* FishDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FishDocument.m; sourceTree = "<group>"; };
 		4CE2546E1AAC969A00E511B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -69,16 +72,10 @@
 		4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishInterpreter.m; sourceTree = "<group>"; };
 		4CE254911AAE27BF00E511B6 /* FishProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishProgram.h; sourceTree = "<group>"; };
 		4CE254921AAE27BF00E511B6 /* FishProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishProgram.m; sourceTree = "<group>"; };
-		4CE254951AAF0A0100E511B6 /* DebugTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugTestClass.h; sourceTree = "<group>"; };
-		4CE254961AAF0A0100E511B6 /* DebugTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugTestClass.m; sourceTree = "<group>"; };
 		4CE254981AAF54C600E511B6 /* FishInstructionSetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishInstructionSetManager.h; sourceTree = "<group>"; };
 		4CE254991AAF54C600E511B6 /* FishInstructionSetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishInstructionSetManager.m; sourceTree = "<group>"; };
 		4CE2549E1AAF89B700E511B6 /* FishContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishContext.h; sourceTree = "<group>"; };
 		4CE2549F1AAF89B700E511B6 /* FishContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishContext.m; sourceTree = "<group>"; };
-		4CE254A11AB2EE2B00E511B6 /* FishScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishScrollView.h; sourceTree = "<group>"; };
-		4CE254A21AB2EE2B00E511B6 /* FishScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishScrollView.m; sourceTree = "<group>"; };
-		4CE254A41AB2EF7100E511B6 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
-		4CE254A51AB2EF7100E511B6 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +108,54 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		4C0A275E1AD30DF100A61BFE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4CE254681AAC969A00E511B6 /* FishEditorViewController.h */,
+				4CE254691AAC969A00E511B6 /* FishEditorViewController.m */,
+				4C0A27621AD30E8D00A61BFE /* MainViewController.h */,
+				4C0A27631AD30E8D00A61BFE /* MainViewController.m */,
+				4C0A27651AD30F0800A61BFE /* CenterViewController.h */,
+				4C0A27661AD30F0800A61BFE /* CenterViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4C0A275F1AD30DFB00A61BFE /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				4CE2546B1AAC969A00E511B6 /* FishDocument.h */,
+				4CE2546C1AAC969A00E511B6 /* FishDocument.m */,
+				4CE2548B1AAE274F00E511B6 /* FishProjectDocument.h */,
+				4CE2548C1AAE274F00E511B6 /* FishProjectDocument.m */,
+			);
+			name = Documents;
+			sourceTree = "<group>";
+		};
+		4C0A27601AD30E0B00A61BFE /* Interpreter */ = {
+			isa = PBXGroup;
+			children = (
+				4CE2548E1AAE276D00E511B6 /* FishInterpreter.h */,
+				4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */,
+				4CE2549E1AAF89B700E511B6 /* FishContext.h */,
+				4CE2549F1AAF89B700E511B6 /* FishContext.m */,
+				4CE254981AAF54C600E511B6 /* FishInstructionSetManager.h */,
+				4CE254991AAF54C600E511B6 /* FishInstructionSetManager.m */,
+				4CE254911AAE27BF00E511B6 /* FishProgram.h */,
+				4CE254921AAE27BF00E511B6 /* FishProgram.m */,
+			);
+			name = Interpreter;
+			sourceTree = "<group>";
+		};
+		4C0A27611AD30E2600A61BFE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CBD4B311AB37AEF00748322 /* FishDocumentView.h */,
+				4CBD4B321AB37AEF00748322 /* FishDocumentView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		4CE254551AAC969900E511B6 = {
 			isa = PBXGroup;
 			children = (
@@ -132,32 +177,14 @@
 		4CE254601AAC969A00E511B6 /* Fish IDE */ = {
 			isa = PBXGroup;
 			children = (
+				4C0A27601AD30E0B00A61BFE /* Interpreter */,
+				4C0A275F1AD30DFB00A61BFE /* Documents */,
+				4C0A275E1AD30DF100A61BFE /* View Controllers */,
+				4C0A27611AD30E2600A61BFE /* Views */,
 				4CE254631AAC969A00E511B6 /* AppDelegate.h */,
 				4CE254641AAC969A00E511B6 /* AppDelegate.m */,
-				4CE254951AAF0A0100E511B6 /* DebugTestClass.h */,
-				4CE254961AAF0A0100E511B6 /* DebugTestClass.m */,
-				4CE254681AAC969A00E511B6 /* FishViewController.h */,
-				4CE254691AAC969A00E511B6 /* FishViewController.m */,
 				4CE254871AACC99900E511B6 /* FishWindowController.h */,
 				4CE254881AACC99900E511B6 /* FishWindowController.m */,
-				4CE2546B1AAC969A00E511B6 /* FishDocument.h */,
-				4CE2546C1AAC969A00E511B6 /* FishDocument.m */,
-				4CE2548B1AAE274F00E511B6 /* FishProjectDocument.h */,
-				4CE2548C1AAE274F00E511B6 /* FishProjectDocument.m */,
-				4CE2548E1AAE276D00E511B6 /* FishInterpreter.h */,
-				4CE2548F1AAE276D00E511B6 /* FishInterpreter.m */,
-				4CE2549E1AAF89B700E511B6 /* FishContext.h */,
-				4CE2549F1AAF89B700E511B6 /* FishContext.m */,
-				4CE254981AAF54C600E511B6 /* FishInstructionSetManager.h */,
-				4CE254991AAF54C600E511B6 /* FishInstructionSetManager.m */,
-				4CE254911AAE27BF00E511B6 /* FishProgram.h */,
-				4CE254921AAE27BF00E511B6 /* FishProgram.m */,
-				4CE254A11AB2EE2B00E511B6 /* FishScrollView.h */,
-				4CE254A21AB2EE2B00E511B6 /* FishScrollView.m */,
-				4CE254A41AB2EF7100E511B6 /* TestView.h */,
-				4CE254A51AB2EF7100E511B6 /* TestView.m */,
-				4CBD4B311AB37AEF00748322 /* FishDocumentView.h */,
-				4CBD4B321AB37AEF00748322 /* FishDocumentView.m */,
 				4CE254701AAC969A00E511B6 /* Main.storyboard */,
 				4CE254611AAC969A00E511B6 /* Supporting Files */,
 				4C0A27531AD051DB00A61BFE /* Resources */,
@@ -300,14 +327,13 @@
 				4CBD4B331AB37AEF00748322 /* FishDocumentView.m in Sources */,
 				4CE254891AACC99900E511B6 /* FishWindowController.m in Sources */,
 				4CE2548D1AAE274F00E511B6 /* FishProjectDocument.m in Sources */,
-				4CE2546A1AAC969A00E511B6 /* FishViewController.m in Sources */,
+				4CE2546A1AAC969A00E511B6 /* FishEditorViewController.m in Sources */,
+				4C0A27641AD30E8D00A61BFE /* MainViewController.m in Sources */,
+				4C0A27671AD30F0800A61BFE /* CenterViewController.m in Sources */,
 				4CE254671AAC969A00E511B6 /* main.m in Sources */,
-				4CE254A61AB2EF7100E511B6 /* TestView.m in Sources */,
 				4CE2549A1AAF54C600E511B6 /* FishInstructionSetManager.m in Sources */,
 				4CE254651AAC969A00E511B6 /* AppDelegate.m in Sources */,
-				4CE254971AAF0A0100E511B6 /* DebugTestClass.m in Sources */,
 				4CE254A01AAF89B700E511B6 /* FishContext.m in Sources */,
-				4CE254A31AB2EE2B00E511B6 /* FishScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

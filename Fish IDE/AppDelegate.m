@@ -8,10 +8,6 @@
 
 #import "AppDelegate.h"
 
-#ifdef DEBUG
-#import "DebugTestClass.h"
-#endif
-
 @interface AppDelegate ()
 
 @end
@@ -20,12 +16,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    
-#ifdef DEBUG
-    // Simple testing of classes
-    DebugTestClass *t = [[DebugTestClass alloc] init];
-    [t run];
-#endif
+
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

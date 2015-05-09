@@ -7,9 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "FishScrollView.h"
 
-@interface FishViewController : NSViewController
+@interface FishEditorViewController : NSViewController
 
 //@property IBOutlet NSTextView *textView;
 //@property IBOutlet FishScrollView *contentView;
@@ -17,7 +16,8 @@
 - (void) playSelected;
 - (void) stopSelected;
 
-- (void) registerStopButton:(NSButton*) button;
+@property (weak) IBOutlet NSLayoutConstraint *minimumWidth;
+@property (weak) IBOutlet NSLayoutConstraint *minimumHeight;
 
 @end
 
